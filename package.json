@@ -1,0 +1,205 @@
+{
+    "name": "vscode-http-client",
+    "displayName": "HTTP Client",
+    "description": "Simple way to do HTTP requests.",
+    "version": "0.34.0",
+    "publisher": "mkloubert",
+    "engines": {
+        "vscode": "^1.31.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "HTTP",
+        "Client",
+        "REST",
+        "API",
+        "Requests",
+        "multi-root ready"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.http.client.newRequestScript",
+                "title": "Create new script ...",
+                "category": "HTTP Client"
+            },
+            {
+                "command": "extension.http.client.changeStyle",
+                "title": "Change style ...",
+                "category": "HTTP Client"
+            },
+            {
+                "command": "extension.http.client.newRequest",
+                "title": "New HTTP request ...",
+                "category": "HTTP Client"
+            },
+            {
+                "command": "extension.http.client.newRequestSplitView",
+                "title": "New HTTP request (split view) ...",
+                "category": "HTTP Client"
+            },
+            {
+                "command": "extension.http.client.openCustomCSS",
+                "title": "Open 'custom.css' ...",
+                "category": "HTTP Client"
+            },
+            {
+                "command": "extension.http.client.newRequestForEditor",
+                "title": "Send editor content as HTTP request ...",
+                "category": "HTTP Client"
+            },
+            {
+                "command": "extension.http.client.newRequestFromFile",
+                "title": "Send file as HTTP request ...",
+                "category": "HTTP Client"
+            },
+            {
+                "command": "extension.http.client.showHelp",
+                "title": "Show help ...",
+                "category": "HTTP Client"
+            }
+        ],
+        "configuration": {
+            "properties": {
+                "http.client": {
+                    "type": "object",
+                    "scope": "resource",
+                    "properties": {
+                        "open": {
+                            "description": "Defines one or more files to open on startup.",
+                            "oneOf": [
+                                {
+                                    "description": "One or more of settings for files to open on startup.",
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "description": "The path to the file to open.",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "description": "Settings for a file to open on startup.",
+                                                "type": "object",
+                                                "properties": {
+                                                    "file": {
+                                                        "description": "The path to the file to open.",
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "openNewOnStartup": {
+                            "description": "Opens a new request on startup or not.",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "rejectUnauthorized": {
+                            "description": "Reject unauthorized SSL certificates or not.",
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                }
+            }
+        },
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "extension.http.client.newRequestForEditor",
+                    "group": "httpclient"
+                },
+                {
+                    "command": "extension.http.client.newRequestSplitView",
+                    "group": "httpclient"
+                }
+            ],
+            "editor/title": [
+                {
+                    "command": "extension.http.client.newRequestForEditor",
+                    "group": "httpclient"
+                },
+                {
+                    "command": "extension.http.client.newRequestSplitView",
+                    "group": "httpclient"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "extension.http.client.newRequestForEditor",
+                    "group": "httpclient"
+                },
+                {
+                    "command": "extension.http.client.newRequestSplitView",
+                    "group": "httpclient"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "icon": "icon.png",
+    "badges": [
+        {
+            "description": "PayPal Donate",
+            "url": "https://img.shields.io/badge/Donate-PayPal-green.svg",
+            "href": "https://paypal.me/MarcelKloubert"
+        }
+    ],
+    "author": {
+        "name": "Marcel Joachim Kloubert"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mkloubert/vscode-http-client"
+    },
+    "bugs": {
+        "url": "https://github.com/mkloubert/vscode-http-client/issues"
+    },
+    "readmeFilename": "README.md",
+    "devDependencies": {
+        "@types/fs-extra": "5.0.2",
+        "@types/html-entities": "^1.2.16",
+        "@types/lodash": "^4.14.121",
+        "@types/marked": "0.3.0",
+        "@types/mime-types": "^2.1.0",
+        "@types/mocha": "^5.2.6",
+        "@types/moment": "^2.13.0",
+        "@types/moment-timezone": "^0.5.10",
+        "@types/node": "10.1.4",
+        "@types/sanitize-filename": "^1.1.28",
+        "@types/uuid": "^3.4.4",
+        "tslint": "^5.13.0",
+        "typescript": "^3.3.3333",
+        "vscode": "^1.1.30"
+    },
+    "dependencies": {
+        "fs-extra": "^7.0.1",
+        "header-case-normalizer": "^1.0.3",
+        "html-entities": "^1.2.1",
+        "lodash": "^4.17.11",
+        "marked": "^0.6.1",
+        "merge-deep": "^3.0.2",
+        "mime-types": "^2.1.22",
+        "moment": "^2.24.0",
+        "moment-timezone": "^0.5.23",
+        "node-enumerable": "^4.0.2",
+        "sanitize-filename": "^1.6.1",
+        "uuid": "^3.3.2",
+        "vscode-helpers": "^4.0.1"
+    }
+}
